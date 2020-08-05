@@ -4,6 +4,6 @@ function makeProgress() {
     time = time + 1
     $(".progress-bar").css("width", time + "%").text(time + " %")
   }
-  setTimeout("makeProgress()", 225)
+  setTimeout("makeProgress()", 275)
 }
 makeProgress()
