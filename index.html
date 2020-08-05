@@ -61,19 +61,22 @@
   </div>
   <div id="number-of-results" class="container d-none">
     <div>
-      <button>Return</button>
+      <button id="number-of-results-return">Return</button>
     </div>
     <header>
-      <h1>There are number of results:</h1> <!--Going to change this to javascript-->
+      <h1></h1> <!--Going to change this to javascript-->
     </header>
+    <form id="number-of-results-form">
+      <div class="form-group">
+        <select id="number-of-results-select"></select>
+        <button id="number-of-results-submit" type="submit">SUBMIT</button>
+      </div>
+    </form>
     <div>
       <ul id="list-of-results"><!--List will get generated dynamically with javascript--></ul>
     </div>
   </div>
   <div class="container d-none">
-    <div>
-      <button>Return</button>
-    </div>
     <div>
       <button>Back to Start</button>
     </div>
@@ -85,6 +88,7 @@
   <script src="components/where-to-go.js"></script>
   <script src="components/if-yes.js"></script>
   <script src="components/if-no.js"></script>
+  <script src="components/number-of-results.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
