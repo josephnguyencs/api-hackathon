@@ -80,17 +80,7 @@
     <!--Use google maps api to display location somehow, figure it out at the end-->
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-  <script type="text/javascript">
-    var i = 0;
-    function makeProgress() {
-      if (i < 100) {
-        i = i + 1;
-        $(".progress-bar").css("width", i + "%").text(i + " %");
-      }
-      setTimeout("makeProgress()", 240);
-    }
-    makeProgress();
-  </script>
+  <script src="components/progress-bar.js"></script>
   <script src="components/app.js"></script>
   <script src="components/where-to-go.js"></script>
   <script src="components/if-yes.js"></script>
