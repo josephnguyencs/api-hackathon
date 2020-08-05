@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+  <div id="start-screen" class="container">
+    <header class="row justify-content-md-center">
+      <h1 class="col col-lg-2 justify-content-md-center">Find Ski Resorts</h1>
+    </header>
+    <div id="progress" class="progress">
+      <div class="progress-bar progress-bar-striped" style="min-width: 20px;"></div>
+    </div>
+    <div class="row justify-content-md-center">
+      <button id="start-button" class="col col-lg-2 d-none">START</button>
+    </div>
+  </div>
+  <div id="where-to-go" class="container d-none">
+    <div>
+      <button id="where-to-go-return">Return</button>
+    </div>
+    <header>
+      <h1>Do you know the name of the place where you want to go?</h1>
+    </header>
+    <div>
+      <button id="yes">YES</button>
+      <button id="no">NO</button>
+    </div>
+  </div>
+  <div id="name-of-place" class="container d-none">
+    <div>
+      <button id="name-of-place-return">Return</button>
+    </div>
+    <header>
+      <h1>What is the name of the place?</h1>
+    </header>
+    <form id="name-of-place-form">
+      <div class="form-group">
+        <input id="name-of-place-input" name="name-of-place" type="text" class="form-control" placeholder="Name of place">
+        <button id="name-of-place-submit" type="submit">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+  <div id="name-of-location" class="container d-none">
+    <div>
+      <button id="name-of-location-return">Return</button>
+    </div>
+    <header>
+      <h1>Where do you want to go skiing/snowboarding?</h1>
+    </header>
+    <form id="name-of-location-form">
+      <div class="form-group">
+        <input id="name-of-location-input" name="name-of-location" type="text" class="form-control" placeholder="Name of location">
+        <button id="name-of-location-submit" type="submit">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+  <div id="number-of-results" class="container d-none">
+    <div>
+      <button>Return</button>
+    </div>
+    <header>
+      <h1>There are number of results:</h1> <!--Going to change this to javascript-->
+    </header>
+    <div>
+      <ul id="list-of-results"><!--List will get generated dynamically with javascript--></ul>
+    </div>
+  </div>
+  <div class="container d-none">
+    <div>
+      <button>Return</button>
+    </div>
+    <div>
+      <button>Back to Start</button>
+    </div>
+    <!--Use google maps api to display location somehow, figure it out at the end-->
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script type="text/javascript">
+    var i = 0;
+    function makeProgress() {
+      if (i < 100) {
+        i = i + 1;
+        $(".progress-bar").css("width", i + "%").text(i + " %");
+      }
+      setTimeout("makeProgress()", 240);
+    }
+    makeProgress();
+  </script>
+  <script src="components/app.js"></script>
+  <script src="components/where-to-go.js"></script>
+  <script src="components/if-yes.js"></script>
+  <script src="components/if-no.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
