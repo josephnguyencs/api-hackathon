@@ -60,7 +60,7 @@ class App {
       this.placeArr.push(xmlDoc.getElementsByTagName("name")[i].textContent)
     }
     console.log(this.placeArr)
-    this.ifYes = new IfYes(this.nameOfPlaceForm, this.returnPlace)
+    this.ifYes = new IfYes(this.nameOfPlaceForm, this.returnPlace) // eslint-disable-line
   }
   getNameOfLocationSuccess(info) {
     var xmlText = new XMLSerializer().serializeToString(info)
@@ -70,7 +70,7 @@ class App {
       this.locationArr.push(xmlDoc.getElementsByTagName("region")[i].textContent.slice(4, -3))
     }
     console.log(this.locationArr)
-    this.ifNo = new IfNo(this.nameOfLocationForm, this.returnLocation)
+    this.ifNo = new IfNo(this.nameOfLocationForm, this.returnLocation) // eslint-disable-line
     document.getElementById("progress").classList.add("d-none")
     document.getElementById("start-button").classList.remove("d-none")
   }
