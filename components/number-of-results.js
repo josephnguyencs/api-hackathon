@@ -6,9 +6,12 @@ class NumberOfResults {
     this.returnMatchArr = returnMatchArr
     this.arrId = this.returnId()
     this.matchArr = this.returnMatchArr()
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.formElement.addEventListener('submit', this.handleSubmit)
     this.check = this.check.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.newResult = null
+    this.newLat = ""
+    this.newLng = ""
   }
   return() {
     var returnButton = document.getElementById("number-of-results-return")
@@ -39,6 +42,9 @@ class NumberOfResults {
           var select = document.getElementById("number-of-results-select")
           var option = document.createElement("option")
           option.textContent = xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
+          option.value = xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
+          // option.setAttribute("lat", xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat"))
+          // option.setAttribute("lng", xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng"))
           select.appendChild(option)
         }
       }
@@ -48,9 +54,28 @@ class NumberOfResults {
     e.preventDefault()
     var formData = new FormData(e.target)
     var results = formData.get("number-of-results")
-    console.log(results)
+    var select = document.getElementById("number-of-results-select")
+    var selectValue = select.value
+    console.log(selectValue)
+    for (var i=0; i<16; i++) {
+      this.newLat += selectValue[i]
+    }
+    var newSelectVal = selectValue.slice(16)
+    console.log(newSelectVal)
+    for (var j=0; j<16; j++) {
+      this.newLng += newSelectVal[j]
+    }
+    var newerSelectVal = newSelectVal.slice(17)
+    console.log(this.newLat)
+    console.log(this.newLng)
+    console.log(newerSelectVal)
     document.getElementById("number-of-results").classList.add("d-none")
     document.getElementById("results").classList.remove("d-none")
+    this.newResult = newerSelectVal
+    console.log(this.newResult)
+    this.result = new Result(this.newResult, this.newLat, this.newLng) // eslint-disable-line
+    this.result.returnToStart()
+    this.result.generateMap()
     e.target.reset()
   }
 }

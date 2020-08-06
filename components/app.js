@@ -57,6 +57,7 @@ class App {
     var xmlText = new XMLSerializer().serializeToString(info)
     var parser = new DOMParser()
     var xmlDoc = parser.parseFromString(xmlText, "text/xml")
+    console.log(xmlDoc.getElementsByTagName("skiArea")[0].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat"))
     for (var i=0; i<xmlDoc.getElementsByTagName("name").length; i++) {
       this.placeArr.push(xmlDoc.getElementsByTagName("name")[i].textContent)
     }
