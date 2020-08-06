@@ -1,16 +1,16 @@
 class IfYes {
   constructor(formElement, returnPlace, skiAreaIdForm) {
     this.skiAreaIdArr = []
+    this.skiAreaIdForm = skiAreaIdForm
+    this.getIdOfSkiAreaSuccess = this.getIdOfSkiAreaSuccess.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.returnPlace = returnPlace
     this.arrPlace = this.returnPlace()
     this.formElement = formElement
-    this.skiAreaIdForm = skiAreaIdForm
-    this.getIdOfSkiAreaSuccess = this.getIdOfSkiAreaSuccess.bind(this)
     this.formElement.addEventListener('submit', this.handleSubmit)
     this.matchArrPlace = []
-    this.returnMatchArrPlace = this.returnMatchArrPlace.bind(this)
     this.returnId = this.returnId.bind(this)
+    this.returnMatchArrPlace = this.returnMatchArrPlace.bind(this)
   }
   return() {
     var returnButton = document.getElementById("name-of-place-return")
@@ -50,7 +50,7 @@ class IfYes {
       this.skiAreaIdArr.push(xmlDoc.getElementsByTagName("skiArea")[i].id)
     }
     this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrPlace) // eslint-disable-line
-    this.numberofResults.getIdOfSkiArea()
+    this.numberOfResults.getIdOfSkiArea()
     this.numberOfResults.return()
   }
   returnId() {

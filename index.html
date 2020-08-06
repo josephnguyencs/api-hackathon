@@ -6,6 +6,12 @@
   <title>Document</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <div id="start-screen" class="container">
@@ -64,7 +70,7 @@
       <button id="number-of-results-return">Return</button>
     </div>
     <header>
-      <h1 id="number-of-results-title"></h1> <!--Going to change this to javascript-->
+      <h1 id="number-of-results-title"></h1>
     </header>
     <form id="number-of-results-form">
       <div class="form-group">
@@ -75,9 +81,10 @@
   </div>
   <div id="results" class="container d-none">
     <div>
-      <button>Back to Start</button>
+      <button id="results-back-to-start">Back to Start</button>
     </div>
-    <!--Use google maps api to display location somehow, figure it out at the end-->
+    <h1 id="results-title"></h1>
+    <div id="map"></div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
   <script src="components/progress-bar.js"></script>
@@ -86,6 +93,9 @@
   <script src="components/if-yes.js"></script>
   <script src="components/if-no.js"></script>
   <script src="components/number-of-results.js"></script>
+  <script src="components/results.js"></script>
   <script src="main.js"></script>
+  <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtOg3CD_tUmoPmsBAd28fM8ChZVE5QxDE&callback=initMap"></script>
 </body>
 </html>
