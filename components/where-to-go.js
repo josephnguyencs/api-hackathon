@@ -8,18 +8,18 @@ class WhereToGo {
       startScreen.classList.remove("d-none")
     })
   }
-  ifYes() {
-    var yesButton = document.getElementById("yes")
-    yesButton.addEventListener('click', function() {
+  place() {
+    var placeButton = document.getElementById("place")
+    placeButton.addEventListener('click', function() {
       var nameOfPlace = document.getElementById("name-of-place")
       var whereToGo = document.getElementById("where-to-go")
       nameOfPlace.classList.remove("d-none")
       whereToGo.classList.add("d-none")
     })
   }
-  ifNo() {
-    var noButton = document.getElementById("no")
-    noButton.addEventListener('click', function () {
+  location() {
+    var locationButton = document.getElementById("location")
+    locationButton.addEventListener('click', function () {
       var nameOfLocation = document.getElementById("name-of-location")
       var whereToGo = document.getElementById("where-to-go")
       nameOfLocation.classList.remove("d-none")

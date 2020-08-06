@@ -22,24 +22,24 @@
       <div class="progress-bar progress-bar-striped" style="min-width: 20px;"></div>
     </div>
     <div class="row justify-content-md-center">
-      <button id="start-button" class="col col-lg-2 d-none">START</button>
+      <button id="start-button" class="col col-lg-2 btn-lg d-none btn btn-primary">START</button>
     </div>
   </div>
   <div id="where-to-go" class="container d-none">
     <div>
-      <button id="where-to-go-return">Return</button>
+      <button id="where-to-go-return" class="btn-lg btn btn-primary">Return</button>
     </div>
     <header>
-      <h1>Do you know the name of the place where you want to go?</h1>
+      <h1>Find By Name Of:</h1>
     </header>
     <div>
-      <button id="yes">YES</button>
-      <button id="no">NO</button>
+      <button id="place" class="btn-lg btn btn-primary">PLACE</button>
+      <button id="location" class="btn-lg btn btn-primary">LOCATION</button>
     </div>
   </div>
   <div id="name-of-place" class="container d-none">
     <div>
-      <button id="name-of-place-return">Return</button>
+      <button id="name-of-place-return" class="btn-lg btn btn-primary">Return</button>
     </div>
     <header>
       <h1>What is the name of the place?</h1>
@@ -47,13 +47,13 @@
     <form id="name-of-place-form">
       <div class="form-group">
         <input id="name-of-place-input" name="name-of-place" type="text" class="form-control" placeholder="Name of place">
-        <button id="name-of-place-submit" type="submit">SUBMIT</button>
+        <button id="name-of-place-submit" class="btn-lg btn btn-primary" type="submit">SUBMIT</button>
       </div>
     </form>
   </div>
   <div id="name-of-location" class="container d-none">
     <div>
-      <button id="name-of-location-return">Return</button>
+      <button id="name-of-location-return" class="btn-lg btn btn-primary">Return</button>
     </div>
     <header>
       <h1>Where do you want to go skiing/snowboarding?</h1>
@@ -61,13 +61,13 @@
     <form id="name-of-location-form">
       <div class="form-group">
         <input id="name-of-location-input" name="name-of-location" type="text" class="form-control" placeholder="Name of location">
-        <button id="name-of-location-submit" type="submit">SUBMIT</button>
+        <button id="name-of-location-submit btn btn-primary" class="btn-lg btn btn-primary" type="submit">SUBMIT</button>
       </div>
     </form>
   </div>
   <div id="number-of-results" class="container d-none">
     <div>
-      <button id="number-of-results-return">Return</button>
+      <button id="number-of-results-return" class="btn-lg btn btn-primary">Return</button>
     </div>
     <header>
       <h1 id="number-of-results-title"></h1>
@@ -75,13 +75,13 @@
     <form id="number-of-results-form">
       <div class="form-group">
         <select name="number-of-results" id="number-of-results-select"></select>
-        <button id="number-of-results-submit" type="submit">SUBMIT</button>
+        <button id="number-of-results-submit" class="btn-lg btn btn-primary" type="submit">SUBMIT</button>
       </div>
     </form>
   </div>
   <div id="results" class="container d-none">
     <div>
-      <button id="results-back-to-start">Back to Start</button>
+      <button id="results-back-to-start" class="btn-lg btn btn-primary">Back to Start</button>
     </div>
     <h1 id="results-title"></h1>
     <div id="map"></div>
@@ -90,8 +90,8 @@
   <script src="components/progress-bar.js"></script>
   <script src="components/app.js"></script>
   <script src="components/where-to-go.js"></script>
-  <script src="components/if-yes.js"></script>
-  <script src="components/if-no.js"></script>
+  <script src="components/place.js"></script>
+  <script src="components/location.js"></script>
   <script src="components/number-of-results.js"></script>
   <script src="components/results.js"></script>
   <script src="main.js"></script>

@@ -1,4 +1,4 @@
-class IfYes {
+class Place {
   constructor(formElement, returnPlace, skiAreaIdForm) {
     this.skiAreaIdArr = []
     this.skiAreaIdForm = skiAreaIdForm

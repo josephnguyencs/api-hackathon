@@ -13,6 +13,7 @@ class Result {
       var results = document.getElementById("results")
       startScreen.classList.remove("d-none")
       results.classList.add("d-none")
+      location.reload()
     })
   }
   generateMap() {

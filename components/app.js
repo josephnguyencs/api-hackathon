@@ -7,14 +7,15 @@ class App {
     this.nameOfLocationForm = nameOfLocationForm
     this.skiAreaIdForm = skiAreaIdForm
     this.whereToGoFunc = this.whereToGoFunc.bind(this)
-    this.ifYesFunc = this.ifYesFunc.bind(this)
-    this.ifNoFunc = this.ifNoFunc.bind(this)
+    this.locationFunc = this.locationFunc.bind(this)
+    this.placeFunc = this.placeFunc.bind(this)
     this.getNameOfPlaceSuccess = this.getNameOfPlaceSuccess.bind(this)
     this.returnPlace = this.returnPlace.bind(this)
     this.getNameOfLocationSuccess = this.getNameOfLocationSuccess.bind(this)
     this.returnLocation = this.returnLocation.bind(this)
-    this.ifYes = null
-    this.ifNo = null
+    this.place = null
+    this.location = null
+    this.xml = null
   }
   start() {
     this.getNameOfPlace()
@@ -28,16 +29,16 @@ class App {
     startScreen.classList.add("d-none")
     whereToGoFunc.classList.remove("d-none")
     this.whereToGo.return()
-    this.whereToGo.ifYes()
-    this.whereToGo.ifNo()
-    this.ifYesFunc()
-    this.ifNoFunc()
+    this.whereToGo.place()
+    this.whereToGo.location()
+    this.locationFunc()
+    this.placeFunc()
   }
-  ifYesFunc() {
-    this.ifYes.return()
+  locationFunc() {
+    this.place.return()
   }
-  ifNoFunc() {
-    this.ifNo.return()
+  placeFunc() {
+    this.location.return()
   }
   getNameOfPlace() {
     $.ajax({
@@ -62,7 +63,7 @@ class App {
       this.placeArr.push(xmlDoc.getElementsByTagName("name")[i].textContent)
     }
     console.log(this.placeArr)
-    this.ifYes = new IfYes(this.nameOfPlaceForm, this.returnPlace, this.skiAreaIdForm) // eslint-disable-line
+    this.place = new Place(this.nameOfPlaceForm, this.returnPlace, this.skiAreaIdForm) // eslint-disable-line
   }
   getNameOfLocationSuccess(info) {
     var xmlText = new XMLSerializer().serializeToString(info)
@@ -74,7 +75,7 @@ class App {
     console.log(this.locationArr)
     document.getElementById("progress").classList.add("d-none")
     document.getElementById("start-button").classList.remove("d-none")
-    this.ifNo = new IfNo(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm) // eslint-disable-line
+    this.location = new Location(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm) // eslint-disable-line
   }
   returnPlace() {
     return this.placeArr

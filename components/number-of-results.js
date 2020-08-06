@@ -20,6 +20,7 @@ class NumberOfResults {
       var whereToGo = document.getElementById("where-to-go")
       numberOfResults.classList.add("d-none")
       whereToGo.classList.remove("d-none")
+      location.reload()
     })
   }
   getIdOfSkiArea() {

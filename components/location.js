@@ -1,4 +1,4 @@
-class IfNo {
+class Location {
   constructor(formElement, returnLocation, skiAreaIdForm) {
     this.skiAreaIdArr = []
     this.skiAreaIdForm = skiAreaIdForm
