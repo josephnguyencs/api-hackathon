@@ -16,10 +16,10 @@ class NumberOfResults {
   return() {
     var returnButton = document.getElementById("number-of-results-return")
     returnButton.addEventListener('click', function () {
-      var numberOfResults = document.getElementById("number-of-results")
-      var whereToGo = document.getElementById("where-to-go")
-      numberOfResults.classList.add("d-none")
-      whereToGo.classList.remove("d-none")
+      // var numberOfResults = document.getElementById("number-of-results")
+      // var whereToGo = document.getElementById("where-to-go")
+      // numberOfResults.classList.add("d-none")
+      // whereToGo.classList.remove("d-none")
       location.reload()
     })
   }
@@ -44,12 +44,13 @@ class NumberOfResults {
           var option = document.createElement("option")
           option.textContent = xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
           option.value = xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
-          // option.setAttribute("lat", xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat"))
-          // option.setAttribute("lng", xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng"))
           select.appendChild(option)
         }
       }
     }
+    document.getElementById("number-of-results-loading").classList.add("d-none")
+    document.getElementById("number-of-results-submit").classList.remove("d-none")
+    document.getElementById("number-of-results-select").setAttribute("aria-readonly", "false")
   }
   handleSubmit(e) {
     e.preventDefault()

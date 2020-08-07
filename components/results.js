@@ -5,14 +5,12 @@ class Result {
     this.lng = lng
   }
   returnToStart() {
-    console.log(this.lat)
-    console.log(this.lng)
     var backToStartButton = document.getElementById("results-back-to-start")
     backToStartButton.addEventListener('click', function() {
-      var startScreen = document.getElementById("start-screen")
-      var results = document.getElementById("results")
-      startScreen.classList.remove("d-none")
-      results.classList.add("d-none")
+      // var startScreen = document.getElementById("start-screen")
+      // var results = document.getElementById("results")
+      // startScreen.classList.remove("d-none")
+      // results.classList.add("d-none")
       location.reload()
     })
   }
