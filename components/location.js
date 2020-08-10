@@ -35,7 +35,6 @@ class Location {
     this.getIdOfSkiArea()
     this.skiAreaIdArr = []
     this.matchArrLocation = []
-    // this.formElement.removeEventListener('submit', this.handleSubmit)
     e.target.reset()
   }
   getIdOfSkiArea() {

@@ -18,8 +18,6 @@ class Result {
     var resultsTitle = document.getElementById('results-title')
     var numLat = parseInt(this.lat)
     var numLng = parseInt(this.lng)
-    console.log(numLat)
-    console.log(numLng)
     resultsTitle.textContent = this.newResult
     var options = {
       zoom: 8,
