@@ -7,17 +7,18 @@ class Result {
   returnToStart() {
     var backToStartButton = document.getElementById("results-back-to-start")
     backToStartButton.addEventListener('click', function() {
-      // var startScreen = document.getElementById("start-screen")
-      // var results = document.getElementById("results")
-      // startScreen.classList.remove("d-none")
-      // results.classList.add("d-none")
-      location.reload()
+      var startScreen = document.getElementById("start-screen")
+      var results = document.getElementById("results")
+      startScreen.classList.remove("d-none")
+      results.classList.add("d-none")
     })
   }
   generateMap() {
     var resultsTitle = document.getElementById('results-title')
     var numLat = parseInt(this.lat)
     var numLng = parseInt(this.lng)
+    console.log(numLat)
+    console.log(numLng)
     resultsTitle.textContent = this.newResult
     var options = {
       zoom: 8,

@@ -58,10 +58,11 @@ class App {
     var xmlText = new XMLSerializer().serializeToString(info)
     var parser = new DOMParser()
     var xmlDoc = parser.parseFromString(xmlText, "text/xml")
+    this.xml = xmlDoc
     for (var i=0; i<xmlDoc.getElementsByTagName("name").length; i++) {
       this.placeArr.push(xmlDoc.getElementsByTagName("name")[i].textContent)
     }
-    this.place = new Place(this.nameOfPlaceForm, this.returnPlace, this.skiAreaIdForm) // eslint-disable-line
+    this.place = new Place(this.nameOfPlaceForm, this.returnPlace, this.skiAreaIdForm, this.xml) // eslint-disable-line
   }
   getNameOfLocationSuccess(info) {
     var xmlText = new XMLSerializer().serializeToString(info)
@@ -72,7 +73,7 @@ class App {
     }
     document.getElementById("progress").classList.add("d-none")
     document.getElementById("start-button").classList.remove("d-none")
-    this.location = new Location(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm) // eslint-disable-line
+    this.location = new Location(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm, this.xml) // eslint-disable-line
   }
   returnPlace() {
     return this.placeArr
