@@ -1,5 +1,6 @@
 class NumberOfResults {
   constructor(formElement, returnId, returnMatchArr, xml) {
+    this.return = this.return.bind(this)
     this.checkArr = []
     this.formElement = formElement
     this.returnId = returnId
