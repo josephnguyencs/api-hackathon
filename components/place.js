@@ -1,8 +1,8 @@
 class Place {
-  constructor(formElement, returnPlace, skiAreaIdForm) {
+  constructor(formElement, returnPlace, skiAreaIdForm, xml) {
     this.skiAreaIdArr = []
     this.skiAreaIdForm = skiAreaIdForm
-    this.getIdOfSkiAreaSuccess = this.getIdOfSkiAreaSuccess.bind(this)
+    this.xml = xml
     this.handleSubmit = this.handleSubmit.bind(this)
     this.returnPlace = returnPlace
     this.arrPlace = this.returnPlace()
@@ -33,21 +33,14 @@ class Place {
     document.getElementById("name-of-place").classList.add("d-none")
     document.getElementById("number-of-results").classList.remove("d-none")
     this.getIdOfSkiArea()
+    this.skiAreaIdArr = []
+    this.matchArrPlace = []
+    this.formElement.removeEventListener('submit', this.handleSubmit)
     e.target.reset()
   }
   getIdOfSkiArea() {
-    $.ajax({
-      url: "https://skimap.org/SkiAreas/index.xml",
-      method: "GET",
-      success: this.getIdOfSkiAreaSuccess
-    })
-  }
-  getIdOfSkiAreaSuccess(info) {
-    var xmlText = new XMLSerializer().serializeToString(info)
-    var parser = new DOMParser()
-    var xmlDoc = parser.parseFromString(xmlText, "text/xml")
-    for (var i = 0; i < xmlDoc.getElementsByTagName("skiArea").length; i++) {
-      this.skiAreaIdArr.push(xmlDoc.getElementsByTagName("skiArea")[i].id)
+    for (var i = 0; i < this.xml.getElementsByTagName("skiArea").length; i++) {
+      this.skiAreaIdArr.push(this.xml.getElementsByTagName("skiArea")[i].id)
     }
     this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrPlace) // eslint-disable-line
     this.numberOfResults.getIdOfSkiArea()

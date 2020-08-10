@@ -16,11 +16,22 @@ class NumberOfResults {
   return() {
     var returnButton = document.getElementById("number-of-results-return")
     returnButton.addEventListener('click', function () {
-      // var numberOfResults = document.getElementById("number-of-results")
-      // var whereToGo = document.getElementById("where-to-go")
-      // numberOfResults.classList.add("d-none")
-      // whereToGo.classList.remove("d-none")
-      location.reload()
+      var numberOfResults = document.getElementById("number-of-results")
+      var startScreen = document.getElementById("start-screen")
+      numberOfResults.classList.add("d-none")
+      startScreen.classList.remove("d-none")
+      document.getElementById("number-of-results-loading").classList.remove("d-none")
+      document.getElementById("number-of-results-submit").classList.add("d-none")
+      document.getElementById("number-of-results-select").setAttribute("aria-readonly", "true")
+      var select = document.getElementById("number-of-results-select")
+      this.newLat = ""
+      this.newLng = ""
+      this.checkArr = []
+      select.innerHTML = ""
+      var title = document.getElementById("number-of-results-title")
+      title.textContent = ""
+      this.arrId = null
+      this.matchArr = null
     })
   }
   getIdOfSkiArea() {
@@ -69,7 +80,7 @@ class NumberOfResults {
         break
       }
     }
-    for (var j=0; j<newValue.length; j++) {
+    for (var j=0; j<select.value.length; j++) {
       if (newValue[j] !== "&") {
         this.newLng += newValue[j]
         newVal = newValue.slice(j+1)
@@ -84,6 +95,15 @@ class NumberOfResults {
     this.result = new Result(this.newResult, this.newLat, this.newLng) // eslint-disable-line
     this.result.returnToStart()
     this.result.generateMap()
+    this.newLat = ""
+    this.newLng = ""
+    this.checkArr = []
+    select.innerHTML = ""
+    var title = document.getElementById("number-of-results-title")
+    title.textContent = ""
+    this.arrId = null
+    this.matchArr = null
+    this.formElement.removeEventListener('submit', this.handleSubmit)
     e.target.reset()
   }
 }
