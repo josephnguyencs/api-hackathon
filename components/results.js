@@ -3,6 +3,7 @@ class Result {
     this.newResult = newResult
     this.lat = lat
     this.lng = lng
+    this.generateMap = this.generateMap.bind(this)
   }
   returnToStart() {
     var backToStartButton = document.getElementById("results-back-to-start")
@@ -25,5 +26,7 @@ class Result {
       center: {lat: numLat, lng: numLng}
     }
     var map = new google.maps.Map(document.getElementById("map"), options) // eslint-disable-line
+    this.lat = ""
+    this.lng = ""
   }
 }

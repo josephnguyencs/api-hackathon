@@ -24,9 +24,9 @@ class Location {
   handleSubmit(e) {
     e.preventDefault()
     var formData = new FormData(e.target)
-    var location = formData.get("name-of-location")
+    var newLocation = formData.get("name-of-location")
     for (var i = 0; i < this.arrLocation.length; i++) {
-      if (this.arrLocation[i] === location) {
+      if (this.arrLocation[i] === newLocation) {
         this.matchArrLocation.push(i)
       }
     }
@@ -35,14 +35,14 @@ class Location {
     this.getIdOfSkiArea()
     this.skiAreaIdArr = []
     this.matchArrLocation = []
-    this.formElement.removeEventListener('submit', this.handleSubmit)
+    // this.formElement.removeEventListener('submit', this.handleSubmit)
     e.target.reset()
   }
   getIdOfSkiArea() {
     for (var i = 0; i < this.xml.getElementsByTagName("skiArea").length; i++) {
       this.skiAreaIdArr.push(this.xml.getElementsByTagName("skiArea")[i].id)
     }
-    this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrLocation) // eslint-disable-line
+    this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrLocation, this.xml) // eslint-disable-line
     this.numberOfResults.getIdOfSkiArea()
     this.numberOfResults.return()
   }
