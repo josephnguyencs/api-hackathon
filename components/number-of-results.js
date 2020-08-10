@@ -1,14 +1,14 @@
 class NumberOfResults {
-  constructor(formElement, returnId, returnMatchArr) {
+  constructor(formElement, returnId, returnMatchArr, xml) {
     this.checkArr = []
     this.formElement = formElement
     this.returnId = returnId
     this.returnMatchArr = returnMatchArr
+    this.xml = xml
     this.arrId = this.returnId()
     this.matchArr = this.returnMatchArr()
     this.handleSubmit = this.handleSubmit.bind(this)
     this.formElement.addEventListener('submit', this.handleSubmit)
-    this.check = this.check.bind(this)
     this.newResult = null
     this.newLat = ""
     this.newLng = ""
@@ -35,26 +35,16 @@ class NumberOfResults {
     })
   }
   getIdOfSkiArea() {
-    $.ajax({
-      url: "https://skimap.org/SkiAreas/index.xml",
-      method: "GET",
-      success: this.check
-    })
-  }
-  check(info) {
     var title = document.getElementById("number-of-results-title")
     title.textContent = "There are " + this.matchArr.length + " results"
-    var xmlText = new XMLSerializer().serializeToString(info)
-    var parser = new DOMParser()
-    var xmlDoc = parser.parseFromString(xmlText, "text/xml")
-    for (var i=0; i<this.matchArr.length; i++) {
+    for (var i = 0; i < this.matchArr.length; i++) {
       this.checkArr.push(this.arrId[this.matchArr[i]])
-      for (var j = 0; j < xmlDoc.getElementsByTagName("skiArea").length; j++) {
-        if (xmlDoc.getElementsByTagName("skiArea")[j].id === this.checkArr[i]) {
+      for (var j = 0; j < this.xml.getElementsByTagName("skiArea").length; j++) {
+        if (this.xml.getElementsByTagName("skiArea")[j].id === this.checkArr[i]) {
           var select = document.getElementById("number-of-results-select")
           var option = document.createElement("option")
-          option.textContent = xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
-          option.value = xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + xmlDoc.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
+          option.textContent = this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
+          option.value = this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
           select.appendChild(option)
         }
       }
@@ -95,8 +85,6 @@ class NumberOfResults {
     this.result = new Result(this.newResult, this.newLat, this.newLng) // eslint-disable-line
     this.result.returnToStart()
     this.result.generateMap()
-    this.newLat = ""
-    this.newLng = ""
     this.checkArr = []
     select.innerHTML = ""
     var title = document.getElementById("number-of-results-title")

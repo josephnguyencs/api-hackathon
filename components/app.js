@@ -31,8 +31,8 @@ class App {
     this.whereToGo.return()
     this.whereToGo.place()
     this.whereToGo.location()
-    this.locationFunc()
     this.placeFunc()
+    this.locationFunc()
   }
   locationFunc() {
     this.place.return()

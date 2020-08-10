@@ -35,14 +35,14 @@ class Place {
     this.getIdOfSkiArea()
     this.skiAreaIdArr = []
     this.matchArrPlace = []
-    this.formElement.removeEventListener('submit', this.handleSubmit)
+    // this.formElement.removeEventListener('submit', this.handleSubmit)
     e.target.reset()
   }
   getIdOfSkiArea() {
     for (var i = 0; i < this.xml.getElementsByTagName("skiArea").length; i++) {
       this.skiAreaIdArr.push(this.xml.getElementsByTagName("skiArea")[i].id)
     }
-    this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrPlace) // eslint-disable-line
+    this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrPlace, this.xml) // eslint-disable-line
     this.numberOfResults.getIdOfSkiArea()
     this.numberOfResults.return()
   }
