@@ -20,7 +20,7 @@ class Result {
     var numLng = parseInt(this.lng)
     resultsTitle.textContent = this.newResult
     var options = {
-      zoom: 20,
+      zoom: 8,
       center: {lat: numLat, lng: numLng}
     }
     var map = new google.maps.Map(document.getElementById("map"), options) // eslint-disable-line

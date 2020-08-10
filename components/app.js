@@ -1,5 +1,5 @@
 class App {
-  constructor(whereToGo, nameOfPlaceForm, nameOfLocationForm, skiAreaIdForm) { //container skiareaidform parameter
+  constructor(whereToGo, nameOfPlaceForm, nameOfLocationForm, skiAreaIdForm) {
     this.whereToGo = whereToGo
     this.placeArr = []
     this.locationArr = []
@@ -7,8 +7,6 @@ class App {
     this.nameOfLocationForm = nameOfLocationForm
     this.skiAreaIdForm = skiAreaIdForm
     this.whereToGoFunc = this.whereToGoFunc.bind(this)
-    this.locationFunc = this.locationFunc.bind(this)
-    this.placeFunc = this.placeFunc.bind(this)
     this.getNameOfPlaceSuccess = this.getNameOfPlaceSuccess.bind(this)
     this.returnPlace = this.returnPlace.bind(this)
     this.getNameOfLocationSuccess = this.getNameOfLocationSuccess.bind(this)
@@ -31,27 +29,19 @@ class App {
     this.whereToGo.return()
     this.whereToGo.place()
     this.whereToGo.location()
-    this.placeFunc()
-    this.locationFunc()
-  }
-  locationFunc() {
-    this.place.return()
-  }
-  placeFunc() {
-    this.location.return()
   }
   getNameOfPlace() {
     $.ajax({
       url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
       method: "GET",
-      success: this.getNameOfPlaceSuccess
+      success: this.getNameOfPlaceSuccess,
     })
   }
   getNameofLocation() {
     $.ajax({
       url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
       method: "GET",
-      success: this.getNameOfLocationSuccess
+      success: this.getNameOfLocationSuccess,
     })
   }
   getNameOfPlaceSuccess(info) {
@@ -63,6 +53,7 @@ class App {
       this.placeArr.push(xmlDoc.getElementsByTagName("name")[i].textContent)
     }
     this.place = new Place(this.nameOfPlaceForm, this.returnPlace, this.skiAreaIdForm, this.xml) // eslint-disable-line
+    this.place.return()
   }
   getNameOfLocationSuccess(info) {
     var xmlText = new XMLSerializer().serializeToString(info)
@@ -74,6 +65,7 @@ class App {
     document.getElementById("progress").classList.add("d-none")
     document.getElementById("start-button").classList.remove("d-none")
     this.location = new Location(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm, this.xml) // eslint-disable-line
+    this.location.return()
   }
   returnPlace() {
     return this.placeArr
