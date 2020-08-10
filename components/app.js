@@ -42,16 +42,16 @@ class App {
   }
   getNameOfPlace() {
     $.ajax({
-      url: "https://skimap.org/SkiAreas/index.xml",
+      url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
       method: "GET",
-      success: this.getNameOfPlaceSuccess,
+      success: this.getNameOfPlaceSuccess
     })
   }
   getNameofLocation() {
     $.ajax({
-      url: "https://skimap.org/SkiAreas/index.xml",
+      url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
       method: "GET",
-      success: this.getNameOfLocationSuccess,
+      success: this.getNameOfLocationSuccess
     })
   }
   getNameOfPlaceSuccess(info) {
