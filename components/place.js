@@ -11,6 +11,7 @@ class Place {
     this.matchArrPlace = []
     this.returnId = this.returnId.bind(this)
     this.returnMatchArrPlace = this.returnMatchArrPlace.bind(this)
+    this.numberOfResults = null
   }
   return() {
     var returnButton = document.getElementById("name-of-place-return")
@@ -41,9 +42,8 @@ class Place {
     for (var i = 0; i < this.xml.getElementsByTagName("skiArea").length; i++) {
       this.skiAreaIdArr.push(this.xml.getElementsByTagName("skiArea")[i].id)
     }
-    this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrPlace, this.xml) // eslint-disable-line
-    this.numberOfResults.getIdOfSkiArea()
-    this.numberOfResults.return()
+      this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrPlace, this.xml) // eslint-disable-line
+      this.numberOfResults.getIdOfSkiArea()
   }
   returnId() {
     return this.skiAreaIdArr
