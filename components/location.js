@@ -10,7 +10,6 @@ class Location {
     this.formElement.addEventListener('submit', this.handleSubmit)
     this.matchArrLocation = []
     this.returnId = this.returnId.bind(this)
-    this.numberOfResults = null
     this.returnMatchArrLocation = this.returnMatchArrLocation.bind(this)
   }
   return() {
@@ -26,9 +25,6 @@ class Location {
     e.preventDefault()
     var formData = new FormData(e.target)
     var newLocation = formData.get("name-of-location")
-    if (newLocation === "") {
-      return
-    }
     for (var i = 0; i < this.arrLocation.length; i++) {
       if (this.arrLocation[i] === newLocation) {
         this.matchArrLocation.push(i)
@@ -47,6 +43,7 @@ class Location {
     }
     this.numberOfResults = new NumberOfResults(this.skiAreaIdForm, this.returnId, this.returnMatchArrLocation, this.xml) // eslint-disable-line
     this.numberOfResults.getIdOfSkiArea()
+    this.numberOfResults.return()
   }
   returnId() {
     return this.skiAreaIdArr

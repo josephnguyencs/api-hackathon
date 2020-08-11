@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find Ski Resorts</title>
+  <title>Document</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <style>
@@ -77,13 +77,14 @@
       <button id="number-of-results-return" class="btn-lg btn btn-info">Restart</button>
     </div>
     <header class="mt-5">
+      <h1 id="number-of-results-loading" class="text-center">CHECKING FOR MATCHES... PLEASE WAIT</h1>
       <h1 id="number-of-results-title"></h1>
     </header>
     <form id="number-of-results-form" class="mt-5">
       <div class="form-group">
         <label>Select an option</label>
-        <select name="number-of-results" class="form-control" id="number-of-results-select" aria-readonly="false"></select>
-        <button id="number-of-results-submit" class="btn-lg btn btn-info float-right mt-5" type="submit">SUBMIT</button>
+        <select name="number-of-results" class="form-control" id="number-of-results-select" aria-readonly="true"></select>
+        <button id="number-of-results-submit" class="btn-lg btn btn-info d-none float-right" type="submit">SUBMIT</button>
       </div>
     </form>
   </div>
