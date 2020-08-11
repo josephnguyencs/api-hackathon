@@ -16,15 +16,19 @@ class Result {
   }
   generateMap() {
     var resultsTitle = document.getElementById('results-title')
-    var numLat = parseInt(this.lat)
-    var numLng = parseInt(this.lng)
     resultsTitle.textContent = this.newResult
-    var options = {
-      zoom: 8,
-      center: {lat: numLat, lng: numLng}
+    console.log(this.lat)
+    console.log(typeof(this.lat))
+    if (this.lat === "null") {
+      document.getElementById("results-title").textContent = "Map is unavailable for this place"
+    } else {
+      var numLat = parseInt(this.lat)
+      var numLng = parseInt(this.lng)
+      var options = {
+        zoom: 8,
+        center: {lat: numLat, lng: numLng}
+      }
+      var map = new google.maps.Map(document.getElementById("map"), options) // eslint-disable-line
     }
-    var map = new google.maps.Map(document.getElementById("map"), options) // eslint-disable-line
-    this.lat = ""
-    this.lng = ""
   }
 }

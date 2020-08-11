@@ -29,13 +29,15 @@ class NumberOfResults {
   getIdOfSkiArea() {
     var title = document.getElementById("number-of-results-title")
     if (this.matchArr.length === 0) {
-      title.textContent = "There are no results, please restart the app"
-      document.getElementById("number-of-results-select").setAttribute("aria-readonly", "true")
+      title.textContent = "No results found, please press Restart and try again"
+      document.getElementById("number-of-results-select").classList.add("d-none")
       document.getElementById("number-of-results-submit").classList.add("d-none")
+      document.getElementById("number-of-results-label").classList.add("d-none")
     } else {
       title.textContent = "There are " + this.matchArr.length + " results"
-      document.getElementById("number-of-results-select").setAttribute("aria-readonly", "false")
+      document.getElementById("number-of-results-select").classList.remove("d-none")
       document.getElementById("number-of-results-submit").classList.remove("d-none")
+      document.getElementById("number-of-results-label").classList.remove("d-none")
     }
     for (var i = 0; i < this.matchArr.length; i++) {
       this.checkArr.push(this.arrId[this.matchArr[i]])
