@@ -26,6 +26,9 @@ class Place {
     e.preventDefault()
     var formData = new FormData(e.target)
     var place = formData.get("name-of-place")
+    if (place === "") {
+      return
+    }
     for (var i=0; i<this.arrPlace.length; i++) {
       if (this.arrPlace[i] === place) {
         this.matchArrPlace.push(i)
