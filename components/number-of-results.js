@@ -8,36 +8,35 @@ class NumberOfResults {
     this.xml = xml
     this.arrId = this.returnId()
     this.matchArr = this.returnMatchArr()
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.formElement.addEventListener('submit', this.handleSubmit)
     this.newResult = null
     this.newLat = ""
     this.newLng = ""
+    this.restartButton = document.getElementById("number-of-results-return")
   }
   return() {
-    var returnButton = document.getElementById("number-of-results-return")
-    returnButton.addEventListener('click', function () {
-      var numberOfResults = document.getElementById("number-of-results")
-      var startScreen = document.getElementById("start-screen")
-      numberOfResults.classList.add("d-none")
-      startScreen.classList.remove("d-none")
-      document.getElementById("number-of-results-loading").classList.remove("d-none")
-      document.getElementById("number-of-results-submit").classList.add("d-none")
-      document.getElementById("number-of-results-select").setAttribute("aria-readonly", "true")
-      var select = document.getElementById("number-of-results-select")
-      this.newLat = ""
-      this.newLng = ""
-      this.checkArr = []
-      select.innerHTML = ""
-      var title = document.getElementById("number-of-results-title")
-      title.textContent = ""
-      this.arrId = null
-      this.matchArr = null
-    })
+    this.restartButton.removeEventListener('click', this.returnButtonAction)
+    this.restartButton.addEventListener('click', this.returnButtonAction)
+  }
+  returnButtonAction() {
+    var numberOfResults = document.getElementById("number-of-results")
+    var startScreen = document.getElementById("start-screen")
+    numberOfResults.classList.add("d-none")
+    startScreen.classList.remove("d-none")
+    var select = document.getElementById("number-of-results-select")
+    select.innerHTML = ""
   }
   getIdOfSkiArea() {
     var title = document.getElementById("number-of-results-title")
-    title.textContent = "There are " + this.matchArr.length + " results"
+    if (this.matchArr.length === 0) {
+      title.textContent = "There are no results, please restart the app"
+      document.getElementById("number-of-results-select").setAttribute("aria-readonly", "true")
+      document.getElementById("number-of-results-submit").classList.add("d-none")
+    } else {
+      title.textContent = "There are " + this.matchArr.length + " results"
+      document.getElementById("number-of-results-select").setAttribute("aria-readonly", "false")
+      document.getElementById("number-of-results-submit").classList.remove("d-none")
+    }
     for (var i = 0; i < this.matchArr.length; i++) {
       this.checkArr.push(this.arrId[this.matchArr[i]])
       for (var j = 0; j < this.xml.getElementsByTagName("skiArea").length; j++) {
@@ -50,12 +49,12 @@ class NumberOfResults {
         }
       }
     }
-    document.getElementById("number-of-results-loading").classList.add("d-none")
-    document.getElementById("number-of-results-submit").classList.remove("d-none")
-    document.getElementById("number-of-results-select").setAttribute("aria-readonly", "false")
+    this.return()
   }
   handleSubmit(e) {
     e.preventDefault()
+    this.newLat = ""
+    this.newLng = ""
     var formData = new FormData(e.target)
     var results = formData.get("number-of-results")
     var select = document.getElementById("number-of-results-select")
@@ -86,13 +85,7 @@ class NumberOfResults {
     this.result = new Result(this.newResult, this.newLat, this.newLng) // eslint-disable-line
     this.result.returnToStart()
     this.result.generateMap()
-    this.checkArr = []
     select.innerHTML = ""
-    var title = document.getElementById("number-of-results-title")
-    title.textContent = ""
-    this.arrId = null
-    this.matchArr = null
-    this.formElement.removeEventListener('submit', this.handleSubmit)
     e.target.reset()
   }
 }
