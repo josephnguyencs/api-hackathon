@@ -63,6 +63,7 @@ class App {
       this.locationArr.push(xmlDoc.getElementsByTagName("region")[i].textContent.slice(4, -3))
     }
     document.getElementById("loader").classList.add("d-none")
+    document.getElementById("loader-text").classList.add("d-none")
     document.getElementById("start-button").classList.remove("d-none")
     this.location = new Location(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm, this.xml) // eslint-disable-line
     this.location.return()
