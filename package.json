@@ -1,0 +1,25 @@
+{
+  "name": "api-hackathon",
+  "version": "1.0.0",
+  "description": "A hackathon project utilizing the data from two public APIs to create a ski resort app and give results in a google map",
+  "main": "main.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephnguyencs/api-hackathon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephnguyencs/api-hackathon/issues"
+  },
+  "homepage": "https://github.com/josephnguyencs/api-hackathon#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  }
+}

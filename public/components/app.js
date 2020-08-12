@@ -32,19 +32,20 @@ class App {
   }
   getNameOfPlace() {
     $.ajax({
-      url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
+      url: '/api',
       method: "GET",
       success: this.getNameOfPlaceSuccess,
     })
   }
   getNameofLocation() {
     $.ajax({
-      url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
+      url: '/api',
       method: "GET",
-      success: this.getNameOfLocationSuccess,
+      success: this.getNameofLocation,
     })
   }
   getNameOfPlaceSuccess(info) {
+    console.log(info)
     var xmlText = new XMLSerializer().serializeToString(info)
     var parser = new DOMParser()
     var xmlDoc = parser.parseFromString(xmlText, "text/xml")
