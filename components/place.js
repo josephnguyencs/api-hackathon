@@ -26,7 +26,7 @@ class Place {
       return
     }
     for (var i = 0; i < this.arrId.length; i++) {
-      if (this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent === newPlace) {
+      if (this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent.toUpperCase() === newPlace.toUpperCase()) {
         this.skiAreaIdArr.push(this.arrId[i])
       }
     }
