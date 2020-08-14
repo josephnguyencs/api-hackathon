@@ -33,9 +33,8 @@ class App {
     })
   }
   getLocationAndPlace(info) {
-    var xmlText = new XMLSerializer().serializeToString(info)
     var parser = new DOMParser()
-    var xmlDoc = parser.parseFromString(xmlText, "text/xml")
+    var xmlDoc = parser.parseFromString(info, "text/xml")
     this.xml = xmlDoc
     for (var i = 0; i < xmlDoc.getElementsByTagName("skiArea").length; i++) {
       this.arrId.push(xmlDoc.getElementsByTagName("skiArea")[i].id)
