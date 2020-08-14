@@ -1,13 +1,9 @@
 class NumberOfResults {
-  constructor(formElement, returnId, returnMatchArr, xml) {
+  constructor(formElement, skiAreaIdArr, xml) {
     this.return = this.return.bind(this)
-    this.checkArr = []
     this.formElement = formElement
-    this.returnId = returnId
-    this.returnMatchArr = returnMatchArr
+    this.skiAreaIdArr = skiAreaIdArr
     this.xml = xml
-    this.arrId = this.returnId()
-    this.matchArr = this.returnMatchArr()
     this.formElement.addEventListener('submit', this.handleSubmit)
     this.newResult = null
     this.newLat = ""
@@ -28,25 +24,24 @@ class NumberOfResults {
   }
   getIdOfSkiArea() {
     var title = document.getElementById("number-of-results-title")
-    if (this.matchArr.length === 0) {
+    if (this.skiAreaIdArr.length === 0) {
       title.textContent = "No results found, please press Restart and try again"
       document.getElementById("number-of-results-select").classList.add("d-none")
       document.getElementById("number-of-results-submit").classList.add("d-none")
       document.getElementById("number-of-results-label").classList.add("d-none")
     } else {
-      title.textContent = "There are " + this.matchArr.length + " results"
+      title.textContent = "There are " + this.skiAreaIdArr.length + " results"
       document.getElementById("number-of-results-select").classList.remove("d-none")
       document.getElementById("number-of-results-submit").classList.remove("d-none")
       document.getElementById("number-of-results-label").classList.remove("d-none")
     }
-    for (var i = 0; i < this.matchArr.length; i++) {
-      this.checkArr.push(this.arrId[this.matchArr[i]])
-      for (var j = 0; j < this.xml.getElementsByTagName("skiArea").length; j++) {
-        if (this.xml.getElementsByTagName("skiArea")[j].id === this.checkArr[i]) {
+    for (var i = 0; i < this.xml.getElementsByTagName("skiArea").length; i++) {
+      for (var j=0; j<this.skiAreaIdArr.length; j++) {
+        if (this.xml.getElementsByTagName("skiArea")[i].id === this.skiAreaIdArr[j]) {
           var select = document.getElementById("number-of-results-select")
           var option = document.createElement("option")
-          option.textContent = this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
-          option.value = this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[j].firstChild.nextSibling.textContent
+          option.textContent = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent
+          option.value = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent
           select.appendChild(option)
         }
       }

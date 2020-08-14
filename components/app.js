@@ -1,15 +1,12 @@
 class App {
   constructor(whereToGo, nameOfPlaceForm, nameOfLocationForm, skiAreaIdForm) {
     this.whereToGo = whereToGo
-    this.placeArr = []
-    this.locationArr = []
+    this.arrId = []
     this.nameOfPlaceForm = nameOfPlaceForm
     this.nameOfLocationForm = nameOfLocationForm
     this.skiAreaIdForm = skiAreaIdForm
     this.whereToGoFunc = this.whereToGoFunc.bind(this)
     this.getLocationAndPlace = this.getLocationAndPlace.bind(this)
-    this.returnPlace = this.returnPlace.bind(this)
-    this.returnLocation = this.returnLocation.bind(this)
     this.place = null
     this.location = null
     this.xml = null
@@ -40,24 +37,15 @@ class App {
     var parser = new DOMParser()
     var xmlDoc = parser.parseFromString(xmlText, "text/xml")
     this.xml = xmlDoc
-    for (var i=0; i<xmlDoc.getElementsByTagName("name").length; i++) {
-      this.placeArr.push(xmlDoc.getElementsByTagName("name")[i].textContent)
-    }
-    this.place = new Place(this.nameOfPlaceForm, this.returnPlace, this.skiAreaIdForm, this.xml) // eslint-disable-line
-    this.place.return()
-    for (var j = 0; j < xmlDoc.getElementsByTagName("region").length; j++) {
-      this.locationArr.push(xmlDoc.getElementsByTagName("region")[j].textContent.slice(4, -3))
+    for (var i = 0; i < xmlDoc.getElementsByTagName("skiArea").length; i++) {
+      this.arrId.push(xmlDoc.getElementsByTagName("skiArea")[i].id)
     }
     document.getElementById("loader").classList.add("d-none")
     document.getElementById("loader-text").classList.add("d-none")
     document.getElementById("start-button").classList.remove("d-none")
-    this.location = new Location(this.nameOfLocationForm, this.returnLocation, this.skiAreaIdForm, this.xml) // eslint-disable-line
-    this.location.return()
-  }
-  returnPlace() {
-    return this.placeArr
-  }
-  returnLocation() {
-    return this.locationArr
+    var location = new Location(this.nameOfLocationForm, this.arrId, this.skiAreaIdForm, this.xml) // eslint-disable-line
+    location.return()
+    var place = new Place(this.nameOfPlaceForm, this.arrId, this.skiAreaIdForm, this.xml) // eslint-disable-line
+    place.return()
   }
 }
