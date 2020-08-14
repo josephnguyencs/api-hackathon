@@ -23,8 +23,8 @@
       justify-content: center;
     }
     .loader {
-      border: 16px solid #f3f3f3; /* Light grey */
-      border-top: 16px solid #3498db; /* Blue */
+      border: 16px solid #f3f3f3;
+      border-top: 16px solid #3498db;
       border-radius: 50%;
       width: 120px;
       height: 120px;
@@ -46,7 +46,7 @@
     </div>
     <h1 id="loader-text" class="text-center text-danger">Please wait while we fetch the ski resorts!</h1>
     <div class="row float-center justify-content-center w-100 my-auto fixed-bottom">
-      <button id="start-button" class="d-none btn-lg mb-5 w-50 btn btn-primary">START</button>
+      <button id="start-button" class="d-none btn-lg mb-5 ml-4 w-50 btn btn-primary">START</button>
     </div>
   </div>
   <div id="where-to-go" class="container form-group d-none">
@@ -111,6 +111,7 @@
     <h1 class="text-center mt-5" id="results-title"></h1>
     <div id="map" class="mt-5"></div>
   </div>
+  <!-- <iframe class="d-none" src="http://skimap.org/SkiAreas/index.xml"></iframe> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
   <script src="components/app.js"></script>
   <script src="components/where-to-go.js"></script>

@@ -6,6 +6,7 @@ var app = express()
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.get('/api', (req, res, next) => {
+  console.log("getting a request")
   var url = 'http://skimap.org/SkiAreas/index.xml'
   fetch(url)
   .then(response => response.text())
