@@ -12,6 +12,8 @@ class Result {
       var results = document.getElementById("results")
       startScreen.classList.remove("d-none")
       results.classList.add("d-none")
+      var resultsTitle = document.getElementById('results-title')
+      resultsTitle.innerHTML = ""
     })
   }
   generateMap() {
