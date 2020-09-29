@@ -27,15 +27,14 @@ class App {
   }
   getData() {
     $.ajax({
-      url: 'https://cors-anywhere.herokuapp.com/http://skimap.org/SkiAreas/index.xml',
+      url: '/api',
       method: "GET",
       success: this.getLocationAndPlace,
     })
   }
   getLocationAndPlace(info) {
-    var xmlText = new XMLSerializer().serializeToString(info)
     var parser = new DOMParser()
-    var xmlDoc = parser.parseFromString(xmlText, "text/xml")
+    var xmlDoc = parser.parseFromString(info, "text/xml")
     this.xml = xmlDoc
     for (var i = 0; i < xmlDoc.getElementsByTagName("skiArea").length; i++) {
       this.arrId.push(xmlDoc.getElementsByTagName("skiArea")[i].id)
@@ -47,5 +46,6 @@ class App {
     location.return()
     var place = new Place(this.nameOfPlaceForm, this.arrId, this.skiAreaIdForm, this.xml) // eslint-disable-line
     place.return()
+    console.log(this.xml)
   }
 }
