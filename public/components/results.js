@@ -1,8 +1,9 @@
 class Result {
-  constructor(newResult, lat, lng) {
+  constructor(newResult, lat, lng, website) {
     this.newResult = newResult
     this.lat = lat
     this.lng = lng
+    this.website = website
     this.generateMap = this.generateMap.bind(this)
   }
   returnToStart() {
@@ -17,6 +18,7 @@ class Result {
     })
   }
   generateMap() {
+    console.log(this.website)
     var resultsTitle = document.getElementById('results-title')
     resultsTitle.textContent = this.newResult
     if (this.lat === "null") {
@@ -30,6 +32,13 @@ class Result {
         center: {lat: numLat, lng: numLng}
       }
       var map = new google.maps.Map(document.getElementById("map"), options) // eslint-disable-line
+      var website = document.getElementById("website")
+      if (this.website === '' ) {
+        website.textContent = 'Not Available'
+      } else {
+        website.setAttribute('href', this.website)
+        website.textContent = this.website
+      }
     }
   }
 }

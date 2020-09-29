@@ -5,10 +5,11 @@ class NumberOfResults {
     this.skiAreaIdArr = skiAreaIdArr
     this.xml = xml
     this.formElement.addEventListener('submit', this.handleSubmit)
-    this.newResult = null
+    this.newResult = ""
     this.newLat = ""
     this.newLng = ""
     this.restartButton = document.getElementById("number-of-results-return")
+    this.website = ""
   }
   return() {
     this.restartButton.removeEventListener('click', this.returnButtonAction)
@@ -23,6 +24,7 @@ class NumberOfResults {
     select.innerHTML = ""
   }
   getIdOfSkiArea() {
+    console.log(this.website)
     var title = document.getElementById("number-of-results-title")
     if (this.skiAreaIdArr.length === 0) {
       title.textContent = "No results found, please press Restart and try again"
@@ -41,7 +43,7 @@ class NumberOfResults {
           var select = document.getElementById("number-of-results-select")
           var option = document.createElement("option")
           option.textContent = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent
-          option.value = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent
+          option.value = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.textContent
           select.appendChild(option)
         }
       }
@@ -52,12 +54,15 @@ class NumberOfResults {
     e.preventDefault()
     this.newLat = ""
     this.newLng = ""
+    this.newResult = ""
     var formData = new FormData(e.target)
     var results = formData.get("number-of-results")
     var select = document.getElementById("number-of-results-select")
     var selectValue = select.value
+    console.log(selectValue)
     var newValue = null
     var newVal = null
+    var newestVal = null
     for (var i=0; i<select.value.length; i++) {
       if (select.value[i] !== "&") {
         this.newLat += selectValue[i]
@@ -76,10 +81,21 @@ class NumberOfResults {
         break
       }
     }
+    console.log(newVal)
+    console.log(this.newResult)
+    for (var k=0; k<select.value.length; k++) {
+      if (newVal[k] !== "&") {
+        this.newResult += newVal[k]
+        newestVal = newVal.slice(k+1)
+      } else {
+        newestVal = newVal.slice(k+1)
+        break
+      }
+    }
+    this.website = newestVal
     document.getElementById("number-of-results").classList.add("d-none")
     document.getElementById("results").classList.remove("d-none")
-    this.newResult = newVal
-    this.result = new Result(this.newResult, this.newLat, this.newLng) // eslint-disable-line
+    this.result = new Result(this.newResult, this.newLat, this.newLng, this.website) // eslint-disable-line
     this.result.returnToStart()
     this.result.generateMap()
     select.innerHTML = ""
