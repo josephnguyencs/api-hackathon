@@ -15,6 +15,7 @@ class Result {
       results.classList.add("d-none")
       var resultsTitle = document.getElementById('results-title')
       resultsTitle.innerHTML = ""
+      document.getElementById('website').innerHTML = ""
     })
   }
   generateMap() {
