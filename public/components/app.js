@@ -46,6 +46,5 @@ class App {
     location.return()
     var place = new Place(this.nameOfPlaceForm, this.arrId, this.skiAreaIdForm, this.xml) // eslint-disable-line
     place.return()
-    console.log(this.xml)
   }
 }

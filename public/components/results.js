@@ -19,7 +19,6 @@ class Result {
     })
   }
   generateMap() {
-    console.log(this.website)
     var resultsTitle = document.getElementById('results-title')
     resultsTitle.textContent = this.newResult
     if (this.lat === "null") {

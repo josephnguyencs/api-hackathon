@@ -24,7 +24,6 @@ class NumberOfResults {
     select.innerHTML = ""
   }
   getIdOfSkiArea() {
-    console.log(this.website)
     var title = document.getElementById("number-of-results-title")
     if (this.skiAreaIdArr.length === 0) {
       title.textContent = "No results found, please press Restart and try again"
@@ -59,7 +58,6 @@ class NumberOfResults {
     var results = formData.get("number-of-results")
     var select = document.getElementById("number-of-results-select")
     var selectValue = select.value
-    console.log(selectValue)
     var newValue = null
     var newVal = null
     var newestVal = null
@@ -81,8 +79,6 @@ class NumberOfResults {
         break
       }
     }
-    console.log(newVal)
-    console.log(this.newResult)
     for (var k=0; k<select.value.length; k++) {
       if (newVal[k] !== "&") {
         this.newResult += newVal[k]
