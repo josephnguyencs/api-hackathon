@@ -23,4 +23,4 @@ Try the application live at https://josephnguyencs.github.io/api-hackathon/
 * User is unable to submit a blank field
 
 ## Preview
-![alt text](assets/preview.gif)
+![alt text](public/assets/preview.gif)
