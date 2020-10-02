@@ -17,6 +17,7 @@
       background-size: cover;
       width: 100%;
       height: 93vh;
+      overflow-y: hidden;
     }
     #loader {
       display: flex;
@@ -37,6 +38,13 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
+    @media (min-width: 375px) {
+      body {
+        height: 92vh;
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 <body>
