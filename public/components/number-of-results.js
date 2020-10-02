@@ -24,6 +24,7 @@ class NumberOfResults {
     select.innerHTML = ""
   }
   getIdOfSkiArea() {
+    console.log(this.skiAreaIdArr)
     var title = document.getElementById("number-of-results-title")
     if (this.skiAreaIdArr.length === 0) {
       title.textContent = "No results found, please press Restart and try again"
@@ -42,8 +43,10 @@ class NumberOfResults {
           var select = document.getElementById("number-of-results-select")
           var option = document.createElement("option")
           option.textContent = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent
-          option.value = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.textContent
-          select.appendChild(option)
+          if (this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling && this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling && this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.textContent) {
+            option.value = this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lat") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.getAttribute("lng") + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.textContent + "&" + this.xml.getElementsByTagName("skiArea")[i].firstChild.nextSibling.nextSibling.nextSibling.textContent
+            select.appendChild(option)
+          }
         }
       }
     }
