@@ -24,7 +24,6 @@ class NumberOfResults {
     select.innerHTML = ""
   }
   getIdOfSkiArea() {
-    console.log(this.skiAreaIdArr)
     var title = document.getElementById("number-of-results-title")
     if (this.skiAreaIdArr.length === 0) {
       title.textContent = "No results found, please press Restart and try again"
